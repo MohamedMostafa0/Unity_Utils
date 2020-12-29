@@ -33,6 +33,7 @@ namespace API_Lib.Managers
                     www.downloadHandler = dh;
                     // headers
                     www.SetRequestHeader("Content-Type", "application/json");
+                    www.SetRequestHeader("Accept", "application/json");
                     if (!string.IsNullOrEmpty(bearer))
                     {
                         www.SetRequestHeader("AUTHORIZATION", $"bearer {bearer}");

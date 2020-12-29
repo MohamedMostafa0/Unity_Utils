@@ -1,19 +1,24 @@
 ﻿using System;
-using UnityEngine;
 using SocketIOClient;
-using Socket_IO_Lib.Helpers;
 using SocketIOClient.EventArguments;
+using Unity_Utils_Lib;
+using UnityEngine;
 
 namespace Socket_IO_Lib.Managers
 {
-    public sealed class SocketIOManager : IDisposable
+    public sealed class SocketIOManager : BaseSingleton<SocketIOManager>, IDisposable
     {
+        [SerializeField] private string host;
         private SocketIO socket;
-        public SocketIOManager(string host)
+        protected override void OnAwake()
         {
-            Init(host);
+            Init();
         }
-        private void Init(string host)
+        protected override void OnCallDestroy()
+        {
+            Dispose();
+        }
+        private void Init()
         {
             try
             {
